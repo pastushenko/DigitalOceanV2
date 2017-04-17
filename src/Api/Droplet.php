@@ -24,15 +24,15 @@ use DigitalOceanV2\Exception\HttpException;
  */
 class Droplet extends AbstractApi
 {
-	/**
-	 * @param int $per_page
-	 * @param int $page
-	 *
-	 * @return DropletEntity[]
-	 */
+    /**
+     * @param int $per_page
+     * @param int $page
+     *
+     * @return DropletEntity[]
+     */
     public function getAll($per_page = 200, $page = 1)
     {
-	    $droplets = $this->adapter->get(sprintf('%s/droplets?per_page=%d&page=%d', $this->endpoint, $per_page, $page));
+        $droplets = $this->adapter->get(sprintf('%s/droplets?per_page=%d&page=%d', $this->endpoint, $per_page, $page));
 
         $droplets = json_decode($droplets);
 
