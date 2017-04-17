@@ -113,12 +113,14 @@ class Droplet extends AbstractApi
      * @param bool         $privateNetworking
      * @param int[]        $sshKeys
      * @param string       $userData
+     * @param bool         $monitoring
+     * @param string[]     $tags
      *
      * @throws HttpException
      *
      * @return DropletEntity|null
      */
-    public function create($names, $region, $size, $image, $backups = false, $ipv6 = false, $privateNetworking = false, array $sshKeys = [], $userData = '')
+    public function create($names, $region, $size, $image, $backups = false, $ipv6 = false, $privateNetworking = false, array $sshKeys = [], $userData = '', $monitoring = true, array $tags = [])
     {
         $data = is_array($names) ? ['names' => $names] : ['name' => $names];
 
@@ -129,10 +131,15 @@ class Droplet extends AbstractApi
             'backups' => $backups ? 'true' : 'false',
             'ipv6' => $ipv6 ? 'true' : 'false',
             'private_networking' => $privateNetworking ? 'true' : 'false',
+            'monitoring' => $monitoring ? 'true' : 'false',
         ]);
 
         if (0 < count($sshKeys)) {
             $data['ssh_keys'] = $sshKeys;
+        }
+
+        if (0 < count($tags)) {
+            $data['tags'] = $tags;
         }
 
         if (!empty($userData)) {
