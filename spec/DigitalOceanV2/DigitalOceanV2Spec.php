@@ -26,6 +26,11 @@ class DigitalOceanV2Spec extends \PhpSpec\ObjectBehavior
         $this->action()->shouldBeAnInstanceOf('DigitalOceanV2\Api\Action');
     }
 
+    function it_should_return_a_certificate_instance()
+    {
+        $this->certificate()->shouldBeAnInstanceOf('DigitalOceanV2\Api\Certificate');
+    }
+
     function it_should_return_a_domain_instance()
     {
         $this->domain()->shouldBeAnInstanceOf('DigitalOceanV2\Api\Domain');
@@ -54,6 +59,11 @@ class DigitalOceanV2Spec extends \PhpSpec\ObjectBehavior
     function it_should_return_a_key_instance()
     {
         $this->key()->shouldBeAnInstanceOf('DigitalOceanV2\Api\Key');
+    }
+
+    function it_should_return_a_load_balancer_instance()
+    {
+        $this->loadBalancer()->shouldBeAnInstanceOf('DigitalOceanV2\Api\LoadBalancer');
     }
 
     function it_should_return_a_rate_limit_instance()

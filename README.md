@@ -144,6 +144,12 @@ If you use Guzzle, you can inject your own client to our `GuzzleAdapter`.
 
 You can also build your own adapter by extending `AbstractAdapter` and implementing `AdapterInterface`.
 
+API documentation
+-------
+
+The API documentation is available [here](https://cdn.rawgit.com/toin0u/DigitalOceanV2/master/documentation/index.html) and generated using [phpDocumentor](https://www.phpdoc.org/)
+
+
 Example
 -------
 
@@ -400,6 +406,33 @@ $updatedKey = $key->update(123, 'new-key-name');
 $key->delete(123);
 ```
 
+Load Balancer
+-------------
+
+```php
+// ..
+// return the load balancer api
+$loadBalancer = $digitalocean->loadbalancer();
+
+//returns a collection of Load Balancer entities
+$loadBalancers = $loadBalancer->getAll();
+
+//return a Load Balancer entity by id
+$myLoadBalancer = $loadBalancer->getById('506f78a4-e098-11e5-ad9f-000f53306ae1');
+
+/**
+* updates an existing load balancer, the method will except a LoadBalancer
+* entity or a load balancer representation in array form, the digitial
+* Ocean API requires a full representation of your load
+* balancer, any attribute that is missing will
+* be reset to it's default setting.
+*/
+$myUpdatedLoadBalancer = $loadBalancer->update('506f78a4-e098-11e5-ad9f-000f53306ae1', $myLoadBalancer);
+
+//create a standard load balancer that listens on port 80 and 443 with ssl passthrough enabled
+$myNewLoadBalancer = $loadBalancer->create('my-new-load-balancer', 'nyc1');
+```
+
 Region
 ------
 
@@ -456,6 +489,9 @@ $volumes = $volume->getByNameAndRegion('example', 'nyc1');
 // returns a volume by id
 $myvolume = $volume->getById('506f78a4-e098-11e5-ad9f-000f53306ae1');
 
+// returns a volumes snapshots by volume id
+$mySnapshots = $volume->getSnapshots('506f78a4-e098-11e5-ad9f-000f53306ae1');
+
 // creates a volume
 $myvolume = $volume->create('example', 'Block store for examples', 10, 'nyc1');
 
@@ -473,6 +509,9 @@ $volume->detach('506f78a4-e098-11e5-ad9f-000f53306ae1', 123, 'nyc1');
 
 // resize a volume 
 $volume->resize('506f78a4-e098-11e5-ad9f-000f53306ae1', 20, 'nyc1');
+
+// take a snapshot of volume and name it 'my-snapshot'. Returns the Snapshot entity
+$snapshot = $volume->snapshot('506f78a4-e098-11e5-ad9f-000f53306ae1', 'my-snapshot');
 
 // get a volume action by its id 
 $volume->getActionById(123, '506f78a4-e098-11e5-ad9f-000f53306ae1');

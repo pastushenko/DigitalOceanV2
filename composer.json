@@ -35,7 +35,8 @@
         "guzzle/guzzle"             : "~3.7",
         "guzzlehttp/guzzle"         : "~5.0|~6.0",
         "phpspec/phpspec"           : "~2.4",
-        "friendsofphp/php-cs-fixer" : "~1.11"
+        "friendsofphp/php-cs-fixer" : "~1.11",
+        "phpdocumentor/phpdocumentor": "2.*"
     },
 
     "suggest": {
@@ -56,7 +57,7 @@
 
     "extra": {
         "branch-alias": {
-            "dev-master": "2.1-dev"
+            "dev-master": "2.2-dev"
         }
     }
 }
